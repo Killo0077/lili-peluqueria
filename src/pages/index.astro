@@ -861,14 +861,29 @@
 
 		<!-- Mobile slide-down menu -->
 		<ul class="mobile-menu" id="mobile-menu">
-			<li><a href="#inicio" onclick="closeMobileMenu()">Inicio</a></li>
 			<li>
-				<a href="#servicios" onclick="closeMobileMenu()">Servicios</a>
+				<a href="#inicio" onclick="window.__closeMobileMenu()">Inicio</a
+				>
 			</li>
-			<li><a href="#galeria" onclick="closeMobileMenu()">Galería</a></li>
-			<li><a href="#sobre" onclick="closeMobileMenu()">Sobre Lili</a></li>
 			<li>
-				<a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
+				<a href="#servicios" onclick="window.__closeMobileMenu()"
+					>Servicios</a
+				>
+			</li>
+			<li>
+				<a href="#galeria" onclick="window.__closeMobileMenu()"
+					>Galería</a
+				>
+			</li>
+			<li>
+				<a href="#sobre" onclick="window.__closeMobileMenu()"
+					>Sobre Lili</a
+				>
+			</li>
+			<li>
+				<a href="#contacto" onclick="window.__closeMobileMenu()"
+					>Contacto</a
+				>
 			</li>
 			<li>
 				<a
@@ -876,7 +891,7 @@
 					class="mobile-whatsapp"
 					target="_blank"
 					rel="noopener"
-					onclick="closeMobileMenu()"
+					onclick="window.__closeMobileMenu()"
 				>
 					<svg
 						width="16"
