@@ -1,17 +1,1340 @@
 ---
-
+// LiLi Peluquería Canina
 ---
 
-<html lang="en">
+<html lang="es">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="LiLi Peluquería Canina — Cuidado profesional, amor incondicional."
+		/>
+		<title>LiLi Peluquería Canina</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap"
+			rel="stylesheet"
+		/>
+
+		<style>
+			/* ── Tokens ── */
+			:root {
+				--teal: #22abb6;
+				--teal-dark: #17929c;
+				--teal-light: #e8f5f5;
+				--gold: #c8933a;
+				--gold-light: #d9a84e;
+				--white: #ffffff;
+				--yellow: #ecea43;
+				--off-white: #f7fafa;
+				--text: #1a2e2e;
+				--muted: #5a7070;
+				--border: #d5e8e8;
+				--font: "Nunito", system-ui, sans-serif;
+				--green: #0fc03b;
+			}
+
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			html {
+				scroll-behavior: smooth;
+			}
+			body {
+				font-family: var(--font);
+				color: var(--text);
+				background: var(--white);
+				overflow-x: hidden;
+			}
+			a {
+				text-decoration: none;
+				color: inherit;
+			}
+			img {
+				display: block;
+				width: 100%;
+			}
+
+			/* ── NAV ── */
+			nav {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 50;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 1rem 3rem;
+			}
+
+			.nav-logo img {
+				height: 200px;
+				width: auto;
+				object-fit: contain;
+			}
+
+			/* ── HAMBURGER MENU ── */
+			.nav-hamburger {
+				display: none;
+				flex-direction: column;
+				justify-content: center;
+				gap: 5px;
+				background: none;
+				border: 2px solid rgba(255, 255, 255, 0.6);
+				border-radius: 0.5rem;
+				padding: 0.5rem 0.6rem;
+				cursor: pointer;
+				z-index: 200;
+			}
+
+			.nav-hamburger span {
+				display: block;
+				width: 22px;
+				height: 2px;
+				background: var(--white);
+				border-radius: 2px;
+				transition:
+					transform 0.3s,
+					opacity 0.3s;
+			}
+
+			/* Animate to X when open */
+			.nav-hamburger.open span:nth-child(1) {
+				transform: translateY(7px) rotate(45deg);
+			}
+			.nav-hamburger.open span:nth-child(2) {
+				opacity: 0;
+			}
+			.nav-hamburger.open span:nth-child(3) {
+				transform: translateY(-7px) rotate(-45deg);
+			}
+
+			/* Mobile dropdown panel */
+			.mobile-menu {
+				display: none;
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				z-index: 150;
+				background: var(--teal-dark);
+				padding: 5rem 2rem 2rem;
+				flex-direction: column;
+				gap: 0;
+				box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+				transform: translateY(-100%);
+				transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+
+			.mobile-menu.open {
+				transform: translateY(0);
+			}
+
+			.mobile-menu li {
+				list-style: none;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			.mobile-menu li:last-child {
+				border-bottom: none;
+			}
+
+			.mobile-menu a {
+				display: block;
+				padding: 1rem 0.5rem;
+				font-size: 1.1rem;
+				font-weight: 700;
+				color: var(--white);
+				letter-spacing: 0.02em;
+				transition: color 0.2s;
+			}
+
+			.mobile-menu a:hover {
+				color: var(--gold-light);
+			}
+
+			.mobile-menu .mobile-whatsapp {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				margin-top: 1rem;
+				padding: 0.85rem 1.5rem;
+				background: var(--gold);
+				color: var(--white) !important;
+				border-radius: 2rem;
+				font-size: 0.95rem;
+			}
+
+			.mobile-menu .mobile-whatsapp:hover {
+				background: var(--gold-light);
+			}
+
+			@media (max-width: 768px) {
+				.nav-hamburger {
+					display: flex;
+				}
+				.mobile-menu {
+					display: flex;
+				}
+				nav {
+					position: fixed;
+					background: var(--teal);
+				}
+				#inicio {
+					padding-top: 80px;
+				}
+			}
+
+			/* Logo placeholder (shown when no image) */
+			.nav-logo-placeholder {
+				height: 70px;
+				width: 140px;
+				background: rgba(255, 255, 255, 0.15);
+				border-radius: 0.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 1.3rem;
+				font-weight: 800;
+				color: var(--white);
+				border: 2px dashed rgba(255, 255, 255, 0.4);
+				letter-spacing: 0.02em;
+			}
+
+			.nav-links {
+				display: flex;
+				align-items: center;
+				gap: 2rem;
+				list-style: none;
+			}
+
+			.nav-links a {
+				font-size: 2rem;
+				font-weight: 900;
+				color: var(--yellow);
+				opacity: 0.9;
+				transition: opacity 0.2s;
+				position: relative;
+			}
+
+			.nav-links a:hover {
+				opacity: 1;
+			}
+
+			.nav-links a.active {
+				opacity: 1;
+				padding-bottom: 3px;
+				border-bottom: 2px solid var(--white);
+			}
+
+			.nav-whatsapp {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.55rem 1.25rem;
+				border: 2px solid var(--white);
+				border-radius: 2rem;
+				color: var(--white) !important;
+				font-weight: 700;
+				font-size: 0.9rem;
+				opacity: 1 !important;
+				transition: background 0.2s !important;
+			}
+
+			.nav-whatsapp:hover {
+				background: rgba(255, 255, 255, 0.15) !important;
+			}
+
+			/* ── HERO ── */
+			#inicio {
+				position: relative;
+				background: var(--teal);
+				min-height: 92vh;
+				display: flex;
+				flex-direction: column;
+				overflow: hidden;
+				padding-top: 100px;
+			}
+
+			/* Watermark dog behind content */
+			.hero-watermark {
+				position: absolute;
+				right: 2%;
+				top: 50%;
+				transform: translateY(-50%);
+				width: 38%;
+				opacity: 0.08;
+				pointer-events: none;
+				z-index: 0;
+			}
+
+			.hero-watermark img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+
+			.hero-content {
+				position: relative;
+				z-index: 1;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				align-items: center;
+				flex: 1;
+				padding: 2rem 3rem 6rem;
+				gap: 2rem;
+			}
+
+			.hero-text h1 {
+				font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+				font-weight: 800;
+				color: var(--white);
+				line-height: 1.1;
+				margin-bottom: 1.5rem;
+			}
+
+			.hero-text h1 em {
+				font-style: italic;
+				font-weight: 700;
+				color: var(--gold-light);
+				display: block;
+			}
+
+			.hero-text p {
+				font-size: 1rem;
+				color: rgba(255, 255, 255, 0.85);
+				max-width: 36ch;
+				line-height: 1.7;
+				margin-bottom: 2rem;
+			}
+
+			.hero-btns {
+				display: flex;
+				align-items: center;
+				gap: 1.5rem;
+				flex-wrap: wrap;
+			}
+
+			.btn-gold {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				padding: 0.8rem 1.6rem;
+				background: var(--gold);
+				color: var(--white);
+				font-weight: 700;
+				font-size: 0.9rem;
+				border-radius: 2rem;
+				transition:
+					background 0.2s,
+					transform 0.2s;
+			}
+
+			.btn-gold:hover {
+				background: var(--gold-light);
+				transform: translateY(-2px);
+			}
+
+			.btn-ghost-white {
+				font-weight: 600;
+				font-size: 0.9rem;
+				color: var(--white);
+				opacity: 0.9;
+				transition: opacity 0.2s;
+			}
+
+			.btn-ghost-white:hover {
+				opacity: 1;
+			}
+
+			/* Hero dog photo (-520 px imagen move to left )*/
+			.hero-photo {
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: flex-end;
+
+				transform: translateX(-220px);
+			}
+
+			.hero-photo-slot {
+				width: 90%;
+				max-width: 420px;
+				aspect-ratio: 3/4;
+				background: rgba(255, 255, 255, 0.08);
+				border-radius: 1rem;
+				border: 2px dashed rgba(255, 255, 255, 0.3);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				color: rgba(255, 255, 255, 0.5);
+				font-size: 0.85rem;
+				gap: 0.5rem;
+			}
+
+			.hero-photo-slot span {
+				font-size: 2.5rem;
+			}
+
+			/* Trust bar */
+			.trust-bar {
+				position: relative;
+				z-index: 1;
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 0;
+				background: rgba(255, 255, 255, 0.12);
+				backdrop-filter: blur(6px);
+				border-top: 1px solid rgba(255, 255, 255, 0.15);
+			}
+
+			.trust-item {
+				display: flex;
+				align-items: center;
+				gap: 0.75rem;
+				padding: 1.1rem 1.5rem;
+				border-right: 1px solid rgba(255, 255, 255, 0.15);
+			}
+
+			.trust-item:last-child {
+				border-right: none;
+			}
+
+			.trust-icon {
+				font-size: 1.5rem;
+				flex-shrink: 0;
+			}
+
+			.trust-label {
+				font-size: 0.82rem;
+				font-weight: 600;
+				color: var(--white);
+				line-height: 1.3;
+			}
+
+			/* Wave divider */
+			.wave-bottom {
+				display: block;
+				width: 100%;
+				overflow: hidden;
+				line-height: 0;
+				margin-top: -1px;
+			}
+
+			.wave-bottom svg {
+				display: block;
+				width: 100%;
+			}
+
+			/* ── SECTION SHARED ── */
+			section {
+				padding: 5rem 3rem;
+			}
+
+			.section-eyebrow {
+				text-align: center;
+				font-size: 0.75rem;
+				font-weight: 700;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: var(--teal);
+				margin-bottom: 0.6rem;
+			}
+
+			.section-title {
+				text-align: center;
+				font-size: clamp(1.6rem, 3vw, 2.4rem);
+				font-weight: 800;
+				color: var(--text);
+				margin-bottom: 3rem;
+			}
+
+			/* ── SERVICES ── */
+			#servicios {
+				background: var(--white);
+			}
+
+			.services-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1.5rem;
+				margin-bottom: 2.5rem;
+			}
+
+			.service-card {
+				border: 1px solid var(--border);
+				border-radius: 1rem;
+				overflow: hidden;
+				background: var(--white);
+				transition:
+					box-shadow 0.25s,
+					transform 0.25s;
+			}
+
+			.service-card:hover {
+				box-shadow: 0 8px 28px rgba(27, 128, 128, 0.12);
+				transform: translateY(-4px);
+			}
+
+			.service-top {
+				padding: 1.75rem 1.5rem 1.25rem;
+				text-align: center;
+			}
+
+			.service-svg {
+				width: 52px;
+				height: 52px;
+				margin: 0 auto 1rem;
+				color: var(--teal);
+			}
+
+			.service-name {
+				font-size: 1.05rem;
+				font-weight: 800;
+				color: var(--text);
+				margin-bottom: 0.5rem;
+			}
+
+			.service-desc {
+				font-size: 0.82rem;
+				color: var(--muted);
+				line-height: 1.55;
+			}
+
+			/* Photo slot inside service card */
+			.service-photo {
+				width: 100%;
+				aspect-ratio: 4/3;
+				background: var(--teal-light);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				color: var(--teal);
+				font-size: 0.75rem;
+				gap: 0.3rem;
+				border-top: 1px solid var(--border);
+			}
+
+			.service-photo span {
+				font-size: 1.8rem;
+			}
+
+			/* Replace .service-photo with real img */
+			.service-photo img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+
+			.services-cta {
+				text-align: center;
+			}
+
+			.btn-teal {
+				display: inline-block;
+				padding: 0.8rem 2.25rem;
+				background: var(--teal);
+				color: var(--white);
+				font-weight: 700;
+				font-size: 0.9rem;
+				border-radius: 2rem;
+				transition:
+					background 0.2s,
+					transform 0.2s;
+			}
+
+			.btn-teal:hover {
+				background: var(--teal-dark);
+				transform: translateY(-2px);
+			}
+
+			/* ── GALLERY ── */
+			#galeria {
+				background: var(--off-white);
+			}
+
+			.gallery-grid {
+				display: grid;
+				grid-template-columns: repeat(6, 1fr);
+				gap: 0.75rem;
+				margin-bottom: 2rem;
+			}
+
+			.gallery-item {
+				aspect-ratio: 1;
+				border-radius: 0.75rem;
+				overflow: hidden;
+				background: var(--teal-light);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				color: var(--teal);
+				font-size: 0.7rem;
+				gap: 0.25rem;
+				cursor: pointer;
+				transition: transform 0.2s;
+			}
+
+			.gallery-item:hover {
+				transform: scale(1.03);
+			}
+			.gallery-item span {
+				font-size: 1.5rem;
+			}
+
+			/* Replace with: <img src="..." alt="..." style="width:100%;height:100%;object-fit:cover"> */
+
+			.gallery-cta {
+				text-align: center;
+			}
+
+			.btn-outline-teal {
+				display: inline-block;
+				padding: 0.7rem 2rem;
+				border: 2px solid var(--teal);
+				color: var(--teal);
+				font-weight: 700;
+				font-size: 0.88rem;
+				border-radius: 2rem;
+				transition:
+					background 0.2s,
+					color 0.2s;
+			}
+
+			.btn-outline-teal:hover {
+				background: var(--teal);
+				color: var(--white);
+			}
+
+			/* ── CONTACT / FOOTER ── */
+			#contacto {
+				background: var(--teal-dark);
+				color: var(--white);
+				padding: 3.5rem 3rem;
+			}
+
+			.footer-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr 1fr;
+				gap: 2rem;
+				align-items: start;
+			}
+
+			.footer-col-title {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 1rem;
+				font-weight: 800;
+				margin-bottom: 0.75rem;
+			}
+
+			.footer-col-title span {
+				font-size: 1.15rem;
+			}
+
+			.footer-col p,
+			.footer-col address {
+				font-size: 0.88rem;
+				line-height: 1.7;
+				opacity: 0.85;
+				font-style: normal;
+			}
+
+			.footer-whatsapp {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.6rem;
+				padding: 0.85rem 1.5rem;
+				background: var(--gold);
+				color: var(--white);
+				font-weight: 700;
+				font-size: 0.95rem;
+				border-radius: 2rem;
+				margin-top: 0.75rem;
+				transition: background 0.2s;
+			}
+
+			.footer-whatsapp:hover {
+				background: var(--gold-light);
+			}
+
+			/* Map placeholder */
+			.map-placeholder {
+				width: 100%;
+				aspect-ratio: 4/3;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 0.75rem;
+				border: 1px dashed rgba(255, 255, 255, 0.3);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.78rem;
+				opacity: 0.7;
+				gap: 0.35rem;
+			}
+
+			.map-placeholder span {
+				font-size: 1.4rem;
+			}
+
+			/* Footer bottom bar */
+			.footer-bottom {
+				background: var(--teal-dark);
+				border-top: 1px solid rgba(255, 255, 255, 0.12);
+				padding: 1.25rem 3rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+			}
+
+			.footer-bottom p {
+				font-size: 0.8rem;
+				color: rgba(255, 255, 255, 0.6);
+			}
+
+			.social-links {
+				display: flex;
+				gap: 1.25rem;
+			}
+
+			.social-links a {
+				color: rgba(255, 255, 255, 0.7);
+				font-size: 1.3rem;
+				transition: color 0.2s;
+			}
+
+			.social-links a:hover {
+				color: var(--white);
+			}
+
+			/* ── RESPONSIVE ── */
+			@media (max-width: 1024px) {
+				.services-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.gallery-grid {
+					grid-template-columns: repeat(3, 1fr);
+				}
+				.footer-grid {
+					grid-template-columns: 1fr 1fr;
+				}
+			}
+
+			@media (max-width: 768px) {
+				nav {
+					padding: 1rem 1.25rem;
+				}
+				.nav-links {
+					display: none;
+				}
+				section {
+					padding: 4rem 1.25rem;
+				}
+				.hero-content {
+					grid-template-columns: 1fr;
+					padding: 2rem 1.25rem 2rem;
+				}
+				.hero-photo {
+					display: none;
+				}
+				.trust-bar {
+					grid-template-columns: 1fr 1fr;
+				}
+				.services-grid {
+					grid-template-columns: 1fr 1fr;
+				}
+				.gallery-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+				.footer-grid {
+					grid-template-columns: 1fr;
+				}
+				.footer-bottom {
+					flex-direction: column;
+					gap: 0.75rem;
+					text-align: center;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.trust-bar {
+					grid-template-columns: 1fr;
+				}
+				.services-grid {
+					grid-template-columns: 1fr;
+				}
+				.gallery-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				html {
+					scroll-behavior: auto;
+				}
+				* {
+					transition: none !important;
+				}
+			}
+		</style>
 	</head>
+
 	<body>
-		<h1>Astro</h1>
+		<!-- ══════════════════════════════════════════
+         NAV
+    ══════════════════════════════════════════ -->
+		<nav>
+			<!--Logo top left Lili peluqueria -->
+			<a href="#inicio" class="nav-logo">
+				<img
+					src="public/images/hero/lili lettering yellow.png"
+					alt="LiLi Peluquería Canina lettering "
+				/>
+			</a>
+
+			<ul class="nav-links">
+				<li><a href="#inicio" class="active">Inicio</a></li>
+				<li><a href="#servicios">Servicios</a></li>
+				<li><a href="#galeria">Galería</a></li>
+				<li><a href="#sobre">Sobre Lili</a></li>
+				<li><a href="#contacto">Contacto</a></li>
+				<li>
+					<a
+						href="https://wa.me/TUNUMERO"
+						class="nav-whatsapp"
+						target="_blank"
+						rel="noopener"
+					>
+						<!-- WhatsApp icon -->
+						<svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							><path
+								d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+							></path><path
+								d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.945.535 3.763 1.466 5.319L2 22l4.78-1.452A9.956 9.956 0 0011.999 22C17.522 22 22 17.522 22 11.999 22 6.477 17.522 2 11.999 2zm0 18.18a8.165 8.165 0 01-4.158-1.134l-.299-.177-3.081.936.939-3.03-.195-.31a8.179 8.179 0 01-1.187-4.265c0-4.517 3.677-8.194 8.181-8.194 4.506 0 8.183 3.677 8.183 8.194 0 4.504-3.677 8.18-8.183 8.18z"
+							></path></svg
+						>
+						WhatsApp
+					</a>
+				</li>
+			</ul>
+
+			<!-- Hamburger button (mobile only) -->
+			<button
+				class="nav-hamburger"
+				id="hamburger"
+				aria-label="Abrir menú"
+				aria-expanded="false"
+			>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</nav>
+
+		<!-- Mobile slide-down menu -->
+		<ul class="mobile-menu" id="mobile-menu">
+			<li><a href="#inicio" onclick="closeMobileMenu()">Inicio</a></li>
+			<li>
+				<a href="#servicios" onclick="closeMobileMenu()">Servicios</a>
+			</li>
+			<li><a href="#galeria" onclick="closeMobileMenu()">Galería</a></li>
+			<li><a href="#sobre" onclick="closeMobileMenu()">Sobre Lili</a></li>
+			<li>
+				<a href="#contacto" onclick="closeMobileMenu()">Contacto</a>
+			</li>
+			<li>
+				<a
+					href="https://wa.me/TUNUMERO"
+					class="mobile-whatsapp"
+					target="_blank"
+					rel="noopener"
+					onclick="closeMobileMenu()"
+				>
+					<svg
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						><path
+							d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+						></path><path
+							d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.945.535 3.763 1.466 5.319L2 22l4.78-1.452A9.956 9.956 0 0011.999 22C17.522 22 22 17.522 22 11.999 22 6.477 17.522 2 11.999 2zm0 18.18a8.165 8.165 0 01-4.158-1.134l-.299-.177-3.081.936.939-3.03-.195-.31a8.179 8.179 0 01-1.187-4.265c0-4.517 3.677-8.194 8.181-8.194 4.506 0 8.183 3.677 8.183 8.194 0 4.504-3.677 8.18-8.183 8.18z"
+						></path></svg
+					>
+					WhatsApp
+				</a>
+			</li>
+		</ul>
+
+		<!-- ══════════════════════════════════════════
+         HERO
+    ══════════════════════════════════════════ -->
+		<section id="inicio">
+			<!-- Watermark:logo / Lili Peluqueria Canina -->
+			<div class="hero-watermark" aria-hidden="true">
+				<img src="/images/hero/logo-lili.png" alt="" />
+			</div>
+
+			<div class="hero-content">
+				<div class="hero-text">
+					<h1>
+						Cuidado profesional,
+						<em>amor incondicional</em>
+					</h1>
+					<p>
+						En LiLi Peluquería Canina, consentimos a tu mejor amigo
+						con servicios de estética y bienestar pensados en su
+						comodidad.
+					</p>
+					<div class="hero-btns">
+						<a
+							href="https://wa.me/TUNUMERO"
+							class="btn-gold"
+							target="_blank"
+							rel="noopener"
+						>
+							<svg
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="currentColor"
+								><path
+									d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+								></path><path
+									d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.945.535 3.763 1.466 5.319L2 22l4.78-1.452A9.956 9.956 0 0011.999 22C17.522 22 22 17.522 22 11.999 22 6.477 17.522 2 11.999 2zm0 18.18a8.165 8.165 0 01-4.158-1.134l-.299-.177-3.081.936.939-3.03-.195-.31a8.179 8.179 0 01-1.187-4.265c0-4.517 3.677-8.194 8.181-8.194 4.506 0 8.183 3.677 8.183 8.194 0 4.504-3.677 8.18-8.183 8.18z"
+								></path></svg
+							>
+							Agendar por WhatsApp
+						</a>
+						<a href="#servicios" class="btn-ghost-white"
+							>Conoce nuestros servicios →</a
+						>
+					</div>
+				</div>
+
+				<div class="hero-photo">
+					<img
+						src="/public/images/hero/real-dog-hero.png"
+						alt="Perrito acicalado"
+						style="max-width:1020px;border-radius:1rem;"
+					/>
+				</div>
+			</div>
+
+			<!-- Trust bar (inside the hero, above the wave) -->
+			<div class="trust-bar">
+				<div class="trust-item">
+					<span class="trust-icon">🤍</span>
+					<span class="trust-label"
+						>Trato cariñoso<br />y paciente</span
+					>
+				</div>
+				<div class="trust-item">
+					<span class="trust-icon">🛡️</span>
+					<span class="trust-label">Productos<br />de calidad</span>
+				</div>
+				<div class="trust-item">
+					<span class="trust-icon">📅</span>
+					<span class="trust-label">Citas<br />programadas</span>
+				</div>
+				<div class="trust-item">
+					<span class="trust-icon">🐾</span>
+					<span class="trust-label"
+						>Para perros<br />de todas las razas</span
+					>
+				</div>
+			</div>
+		</section>
+
+		<!-- Wave divider hero → services -->
+		<div
+			class="wave-bottom"
+			style="background: var(--teal-dark); margin-top:0;"
+		>
+			<svg
+				viewBox="0 0 1440 60"
+				preserveAspectRatio="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60 Z"
+					fill="white"></path>
+			</svg>
+		</div>
+
+		<!-- ══════════════════════════════════════════
+         SERVICES
+    ══════════════════════════════════════════ -->
+		<section id="servicios">
+			<p class="section-eyebrow">Nuestros servicios</p>
+			<h2 class="section-title">Todo lo que tu perro necesita</h2>
+
+			<div class="services-grid">
+				<!-- Card 1 -->
+				<div class="service-card">
+					<div class="service-top">
+						<svg
+							class="service-svg"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M7 17H5a2 2 0 01-2-2V9a2 2 0 012-2h2m10 10h2a2 2 0 002-2V9a2 2 0 00-2-2h-2"
+							></path>
+							<rect x="7" y="5" width="10" height="14" rx="2"
+							></rect>
+							<circle cx="12" cy="11" r="2"></circle>
+							<path d="M8 19v1a1 1 0 001 1h6a1 1 0 001-1v-1"
+							></path>
+						</svg>
+						<p class="service-name">Baño y secado</p>
+						<p class="service-desc">
+							Baño relajante con productos especiales para su piel
+							y pelaje.
+						</p>
+					</div>
+					<!--
+            FOTO: Reemplaza el div.service-photo con:
+            <img src="/images/servicio-bano.jpg" alt="Baño y secado" style="width:100%;aspect-ratio:4/3;object-fit:cover;" />
+          -->
+					<div class="service-photo">
+						<span>🛁</span>Foto del servicio
+					</div>
+				</div>
+
+				<!-- Card 2 -->
+				<div class="service-card">
+					<div class="service-top">
+						<svg
+							class="service-svg"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="6" cy="6" r="2"></circle><circle
+								cx="18"
+								cy="6"
+								r="2"></circle>
+							<path d="M6 8v8l6 4 6-4V8"></path><path
+								d="M6 8l6 4 6-4"></path>
+						</svg>
+						<p class="service-name">Corte y estilizado</p>
+						<p class="service-desc">
+							Cortes profesionales según la raza y estilo que
+							necesite.
+						</p>
+					</div>
+					<div class="service-photo">
+						<span>✂️</span>Foto del servicio
+					</div>
+				</div>
+
+				<!-- Card 3 -->
+				<div class="service-card">
+					<div class="service-top">
+						<svg
+							class="service-svg"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M14.5 17.5L3 6V3h3l11.5 11.5"></path><path
+								d="M13 19l6-6"></path><path d="M2 22l7-7"
+							></path>
+						</svg>
+						<p class="service-name">Corte de uñas</p>
+						<p class="service-desc">
+							Cuidado y corte seguro para su comodidad y salud.
+						</p>
+					</div>
+					<div class="service-photo">
+						<span>💅</span>Foto del servicio
+					</div>
+				</div>
+
+				<!-- Card 4 -->
+				<div class="service-card">
+					<div class="service-top">
+						<svg
+							class="service-svg"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path
+								d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M18 9h4M2 15h4M18 15h4"
+							></path>
+							<rect x="6" y="6" width="12" height="12" rx="3"
+							></rect>
+							<circle cx="12" cy="12" r="3"></circle>
+						</svg>
+						<p class="service-name">
+							Desparasitados y tratamientos
+						</p>
+						<p class="service-desc">
+							Servicios adicionales para su bienestar integral.
+						</p>
+					</div>
+					<div class="service-photo">
+						<span>🌿</span>Foto del servicio
+					</div>
+				</div>
+			</div>
+
+			<div class="services-cta">
+				<a href="#contacto" class="btn-teal">Ver todos los servicios</a>
+			</div>
+		</section>
+
+		<!-- Wave services → gallery -->
+		<div style="background:white; margin-bottom:-1px;">
+			<svg
+				viewBox="0 0 1440 50"
+				preserveAspectRatio="none"
+				xmlns="http://www.w3.org/2000/svg"
+				style="display:block;width:100%;"
+			>
+				<path
+					d="M0,50 C360,0 1080,0 1440,50 L1440,50 L0,50 Z"
+					fill="#F7FAFA"></path>
+			</svg>
+		</div>
+
+		<!-- ══════════════════════════════════════════
+         GALLERY
+    ══════════════════════════════════════════ -->
+		<section id="galeria" style="padding-top: 4rem;">
+			<p class="section-eyebrow">Galería</p>
+			<h2 class="section-title">Momentos que nos llenan de alegría</h2>
+
+			<div class="gallery-grid">
+				<!--
+          FOTOS: Reemplaza cada .gallery-item con:
+          <div class="gallery-item">
+            <img src="/images/galeria-1.jpg" alt="Perrito acicalado" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+        -->
+				<div class="gallery-item"><span>📸</span></div>
+				<div class="gallery-item"><span>📸</span></div>
+				<div class="gallery-item"><span>📸</span></div>
+				<div class="gallery-item"><span>📸</span></div>
+				<div class="gallery-item"><span>📸</span></div>
+				<div class="gallery-item"><span>📸</span></div>
+			</div>
+
+			<div class="gallery-cta">
+				<a
+					href="https://www.instagram.com/lili.peluqueriacanina"
+					class="btn-outline-teal"
+					target="_blank"
+					rel="noopener">Ver más fotos</a
+				>
+			</div>
+		</section>
+
+		<!-- ══════════════════════════════════════════
+         FOOTER / CONTACT
+    ══════════════════════════════════════════ -->
+		<!-- Wave gallery → footer -->
+		<div style="background:#F7FAFA;">
+			<svg
+				viewBox="0 0 1440 50"
+				preserveAspectRatio="none"
+				xmlns="http://www.w3.org/2000/svg"
+				style="display:block;width:100%;"
+			>
+				<path
+					d="M0,0 C360,50 1080,50 1440,0 L1440,50 L0,50 Z"
+					fill="#146868"></path>
+			</svg>
+		</div>
+
+		<footer id="contacto">
+			<div class="footer-grid">
+				<div class="footer-col">
+					<p class="footer-col-title"><span>📍</span> Estamos aquí</p>
+					<address>
+						Calle 123 #45-67<br />
+						Tu Ciudad<br />
+						Colombia
+					</address>
+				</div>
+
+				<div class="footer-col">
+					<p class="footer-col-title"><span>🕐</span> Horarios</p>
+					<p>
+						<strong>Lunes a Viernes</strong><br />8:00 am - 6:00 pm
+						<br /><br />
+						<strong>Sábados</strong><br />8:00 am - 2:00 pm
+					</p>
+				</div>
+
+				<div class="footer-col">
+					<p class="footer-col-title">¿Agendamos una cita?</p>
+					<p style="font-size:0.85rem; opacity:0.8;">
+						Escríbenos por WhatsApp
+					</p>
+					<a
+						href="https://wa.me/573001234567"
+						class="footer-whatsapp"
+						target="_blank"
+						rel="noopener"
+					>
+						<svg
+							width="18"
+							height="18"
+							viewBox="0 0 24 24"
+							fill="currentColor"
+							><path
+								d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+							></path><path
+								d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.945.535 3.763 1.466 5.319L2 22l4.78-1.452A9.956 9.956 0 0011.999 22C17.522 22 22 17.522 22 11.999 22 6.477 17.522 2 11.999 2zm0 18.18a8.165 8.165 0 01-4.158-1.134l-.299-.177-3.081.936.939-3.03-.195-.31a8.179 8.179 0 01-1.187-4.265c0-4.517 3.677-8.194 8.181-8.194 4.506 0 8.183 3.677 8.183 8.194 0 4.504-3.677 8.18-8.183 8.18z"
+							></path></svg
+						>
+						+57 300 123 4567
+					</a>
+				</div>
+
+				<div class="footer-col">
+					<!--
+            MAPA: Reemplaza este div con un iframe de Google Maps:
+            <iframe
+              src="https://www.google.com/maps/embed?pb=..."
+              width="100%" height="180" style="border:0;border-radius:0.75rem;"
+              allowfullscreen loading="lazy">
+            </iframe>
+          -->
+					<div class="map-placeholder">
+						<span>🗺️</span>
+						<span>LiLi Peluquería Canina</span>
+						<small>Aquí va el mapa de Google Maps</small>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<div class="footer-bottom">
+			<p>© 2024 LiLi Peluquería Canina. Todos los derechos reservados.</p>
+			<div class="social-links">
+				<!-- Facebook -->
+				<a href="#" aria-label="Facebook">
+					<svg
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						><path
+							d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+						></path></svg
+					>
+				</a>
+				<!-- Instagram -->
+				<a href="#" aria-label="Instagram">
+					<svg
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						><path
+							d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+						></path></svg
+					>
+				</a>
+				<!-- TikTok -->
+				<a href="#" aria-label="TikTok">
+					<svg
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="currentColor"
+						><path
+							d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"
+						></path></svg
+					>
+				</a>
+			</div>
+		</div>
+
+		<script>
+			// ── Hamburger menu ──
+			const hamburger = document.getElementById("hamburger");
+			const mobileMenu = document.getElementById("mobile-menu");
+
+			hamburger.addEventListener("click", () => {
+				const isOpen = mobileMenu.classList.toggle("open");
+				hamburger.classList.toggle("open", isOpen);
+				hamburger.setAttribute("aria-expanded", isOpen);
+				document.body.style.overflow = isOpen ? "hidden" : "";
+			});
+
+			function closeMobileMenu() {
+				mobileMenu.classList.remove("open");
+				hamburger.classList.remove("open");
+				hamburger.setAttribute("aria-expanded", "false");
+				document.body.style.overflow = "";
+			}
+
+			// Close on Escape key
+			document.addEventListener("keydown", (e) => {
+				if (e.key === "Escape") closeMobileMenu();
+			});
+
+			// ── Active nav link on scroll ──
+			const sections = document.querySelectorAll(
+				"section[id], footer[id]",
+			);
+			const navLinks = document.querySelectorAll(
+				".nav-links a:not(.nav-whatsapp)",
+			);
+
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							navLinks.forEach((link) => {
+								link.classList.toggle(
+									"active",
+									link.getAttribute("href") ===
+										"#" + entry.target.id,
+								);
+							});
+						}
+					});
+				},
+				{ threshold: 0.4 },
+			);
+
+			sections.forEach((s) => observer.observe(s));
+		</script>
 	</body>
 </html>
