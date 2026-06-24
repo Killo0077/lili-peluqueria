@@ -1341,26 +1341,43 @@
 
 		<script>
 			// ── Hamburger menu ──
+			declare global {
+				interface Window {
+					__closeMobileMenu?: () => void;
+				}
+			}
+
 			const hamburger = document.getElementById("hamburger");
 			const mobileMenu = document.getElementById("mobile-menu");
 
-			hamburger.addEventListener("click", () => {
-				const isOpen = mobileMenu.classList.toggle("open");
-				hamburger.classList.toggle("open", isOpen);
-				hamburger.setAttribute("aria-expanded", isOpen);
-				document.body.style.overflow = isOpen ? "hidden" : "";
-			});
+			// Guard against missing elements in non-browser or unexpected states
+			if (hamburger && mobileMenu) {
+				hamburger.addEventListener("click", () => {
+					const isOpen = mobileMenu.classList.toggle("open");
+					hamburger.classList.toggle("open", isOpen);
+					hamburger.setAttribute("aria-expanded", String(isOpen));
+					document.body.style.overflow = isOpen ? "hidden" : "";
+				});
 
-			function closeMobileMenu() {
-				mobileMenu.classList.remove("open");
-				hamburger.classList.remove("open");
-				hamburger.setAttribute("aria-expanded", "false");
-				document.body.style.overflow = "";
+				function closeMobileMenu() {
+					if (mobileMenu) mobileMenu.classList.remove("open");
+					if (hamburger) hamburger.classList.remove("open");
+					if (hamburger)
+						hamburger.setAttribute("aria-expanded", "false");
+					document.body.style.overflow = "";
+				}
+
+				// Expose closeMobileMenu to the outer scope used below
+				window.__closeMobileMenu = closeMobileMenu;
+			} else {
+				// Fallback no-op to avoid runtime errors when elements are absent
+				window.__closeMobileMenu = () => {};
 			}
 
 			// Close on Escape key
 			document.addEventListener("keydown", (e) => {
-				if (e.key === "Escape") closeMobileMenu();
+				if (e.key === "Escape")
+					window.__closeMobileMenu && window.__closeMobileMenu();
 			});
 
 			// ── Active nav link on scroll ──
