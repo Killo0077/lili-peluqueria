@@ -862,28 +862,19 @@
 		<!-- Mobile slide-down menu -->
 		<ul class="mobile-menu" id="mobile-menu">
 			<li>
-				<a href="#inicio" onclick="window.__closeMobileMenu()">Inicio</a
-				>
+				<a href="#inicio">Inicio</a>
 			</li>
 			<li>
-				<a href="#servicios" onclick="window.__closeMobileMenu()"
-					>Servicios</a
-				>
+				<a href="#servicios">Servicios</a>
 			</li>
 			<li>
-				<a href="#galeria" onclick="window.__closeMobileMenu()"
-					>Galería</a
-				>
+				<a href="#galeria">Galería</a>
 			</li>
 			<li>
-				<a href="#sobre" onclick="window.__closeMobileMenu()"
-					>Sobre Lili</a
-				>
+				<a href="#sobre">Sobre Lili</a>
 			</li>
 			<li>
-				<a href="#contacto" onclick="window.__closeMobileMenu()"
-					>Contacto</a
-				>
+				<a href="#contacto">Contacto</a>
 			</li>
 			<li>
 				<a
@@ -891,7 +882,6 @@
 					class="mobile-whatsapp"
 					target="_blank"
 					rel="noopener"
-					onclick="window.__closeMobileMenu()"
 				>
 					<svg
 						width="16"
@@ -1355,17 +1345,16 @@
 		</div>
 
 		<script>
-			// ── Hamburger menu ──
-			declare global {
-				interface Window {
-					__closeMobileMenu?: () => void;
-				}
-			}
-
 			const hamburger = document.getElementById("hamburger");
 			const mobileMenu = document.getElementById("mobile-menu");
 
-			// Guard against missing elements in non-browser or unexpected states
+			function closeMobileMenu() {
+				if (mobileMenu) mobileMenu.classList.remove("open");
+				if (hamburger) hamburger.classList.remove("open");
+				if (hamburger) hamburger.setAttribute("aria-expanded", "false");
+				document.body.style.overflow = "";
+			}
+
 			if (hamburger && mobileMenu) {
 				hamburger.addEventListener("click", () => {
 					const isOpen = mobileMenu.classList.toggle("open");
@@ -1374,53 +1363,10 @@
 					document.body.style.overflow = isOpen ? "hidden" : "";
 				});
 
-				function closeMobileMenu() {
-					if (mobileMenu) mobileMenu.classList.remove("open");
-					if (hamburger) hamburger.classList.remove("open");
-					if (hamburger)
-						hamburger.setAttribute("aria-expanded", "false");
-					document.body.style.overflow = "";
-				}
-
-				// Expose closeMobileMenu to the outer scope used below
-				window.__closeMobileMenu = closeMobileMenu;
-			} else {
-				// Fallback no-op to avoid runtime errors when elements are absent
-				window.__closeMobileMenu = () => {};
+				document.querySelectorAll(".mobile-menu a").forEach((link) => {
+					link.addEventListener("click", closeMobileMenu);
+				});
 			}
-
-			// Close on Escape key
-			document.addEventListener("keydown", (e) => {
-				if (e.key === "Escape")
-					window.__closeMobileMenu && window.__closeMobileMenu();
-			});
-
-			// ── Active nav link on scroll ──
-			const sections = document.querySelectorAll(
-				"section[id], footer[id]",
-			);
-			const navLinks = document.querySelectorAll(
-				".nav-links a:not(.nav-whatsapp)",
-			);
-
-			const observer = new IntersectionObserver(
-				(entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							navLinks.forEach((link) => {
-								link.classList.toggle(
-									"active",
-									link.getAttribute("href") ===
-										"#" + entry.target.id,
-								);
-							});
-						}
-					});
-				},
-				{ threshold: 0.4 },
-			);
-
-			sections.forEach((s) => observer.observe(s));
 		</script>
 	</body>
 </html>
