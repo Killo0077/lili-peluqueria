@@ -1,43 +1,118 @@
-# Astro Starter Kit: Minimal
+# 🐶 LiLi Peluquería Canina
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A modern, responsive website for **LiLi Peluquería Canina**, built with **Astro** and deployed using **GitHub Pages**.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## ✨ Features
 
-## 🚀 Project Structure
+* 📱 Fully responsive design
+* 🐾 Modern hero section
+* ✂️ Grooming services
+* 🖼️ Photo gallery
+* 📍 Contact section with Google Maps integration
+* 💬 Direct WhatsApp booking button
+* ⚡ Fast performance with Astro
+* 🌐 Hosted on GitHub Pages
 
-Inside of your Astro project, you'll see the following folders and files:
+---
+
+## 🛠️ Built With
+
+* Astro
+* HTML5
+* CSS3
+* JavaScript
+* Git & GitHub
+* GitHub Pages
+
+---
+
+## 📂 Project Structure
 
 ```text
-/
+.
 ├── public/
+│   ├── images/
+│   └── favicon.ico
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── pages/
+│   │   └── index.astro
+│   └── styles/
+├── astro.config.mjs
+├── package.json
+└── README.md
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🚀 Development
 
-Any static assets, like images, can be placed in the `public/` directory.
+Install dependencies:
 
-## 🧞 Commands
+```bash
+npm install
+```
 
-All commands are run from the root of the project, from a terminal:
+Start the development server:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+```bash
+npm run dev
+```
 
-## 👀 Want to learn more?
+Open:
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```
+http://localhost:4321
+```
+
+---
+
+## 📦 Production Build
+
+Build the website:
+
+```bash
+npm run build
+```
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## 🌍 Live Website
+
+https://killo0077.github.io/lili-peluqueria/
+
+---
+
+## 📸 Screenshots
+
+Add screenshots of the homepage and mobile version here.
+
+---
+
+## 📞 Business Information
+
+**LiLi Peluquería Canina**
+
+📍 Colombia
+
+Services include:
+
+* Bath & Dry
+* Haircuts
+* Nail Trimming
+* Parasite Treatments
+* Hygiene & Care
+* Personalized Grooming
+
+---
+
+## 📄 License
+
+This project is intended for the official website of **LiLi Peluquería Canina**.
+
+© 2026 LiLi Peluquería Canina. All rights reserved.
