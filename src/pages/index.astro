@@ -9,35 +9,32 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta
 			name="description"
-			content="LiLi Peluquería Canina — Cuidado profesional, amor incondicional."
+			content="LiLi Peluquería Canina — Baño, corte y cuidado profesional para que tu perro se vea y se sienta genial."
 		/>
 		<title>LiLi Peluquería Canina</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800;1,900&display=swap"
 			rel="stylesheet"
 		/>
 
 		<style>
-			/* ── Design Tokens ── */
 			:root {
 				--teal: #22abb6;
 				--teal-dark: #17929c;
 				--teal-light: #e8f5f5;
+				--teal-mid: #d0eef0;
 				--gold: #c8933a;
 				--gold-light: #d9a84e;
 				--white: #ffffff;
-				--yellow: #ecea43;
+				--cream: #f9f6f0;
 				--off-white: #f7fafa;
 				--text: #1a2e2e;
 				--muted: #5a7070;
 				--border: #d5e8e8;
 				--font: "Nunito", system-ui, sans-serif;
-
-				/* Single source of truth for nav height.
-				   Every padding-top and scroll-padding uses this. */
-				--nav-h: 68px;
+				--nav-h: 72px;
 			}
 
 			*,
@@ -47,20 +44,16 @@
 				margin: 0;
 				padding: 0;
 			}
-
 			html {
 				scroll-behavior: smooth;
-				/* Offset anchor jumps so content isn't hidden under the fixed nav */
 				scroll-padding-top: var(--nav-h);
 			}
-
 			body {
 				font-family: var(--font);
 				color: var(--text);
 				background: var(--white);
 				overflow-x: hidden;
 			}
-
 			a {
 				text-decoration: none;
 				color: inherit;
@@ -74,7 +67,7 @@
 			   NAV
 			════════════════════════════════ */
 			nav {
-				position: fixed; /* fixed on ALL sizes */
+				position: fixed;
 				top: 0;
 				left: 0;
 				right: 0;
@@ -83,46 +76,57 @@
 				display: flex;
 				align-items: center;
 				justify-content: space-between;
-				padding: 0 2.5rem;
-				background: var(--teal);
+				padding: 0 1.5rem;
+				background: var(--white);
+				border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+				box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
 			}
 
-			/* Logo: height tied to nav token, never overflows */
 			.nav-logo {
 				display: flex;
-				align-items: center;
+				flex-direction: column;
+				align-items: flex-start;
+				line-height: 1;
+				text-decoration: none;
 			}
 			.nav-logo img {
-				height: calc(var(--nav-h) - 20px); /* 48 px on desktop */
+				height: calc(var(--nav-h) - 28px);
 				width: auto;
-				max-width: 140px;
+				max-width: 110px;
 				object-fit: contain;
 			}
+			.nav-logo-sub {
+				font-size: 0.62rem;
+				font-weight: 600;
+				color: var(--muted);
+				letter-spacing: 0.03em;
+				margin-top: 1px;
+			}
 
-			/* Desktop links */
 			.nav-links {
 				display: flex;
 				align-items: center;
-				gap: 1.5rem;
+				gap: 1.25rem;
 				list-style: none;
 			}
-
 			.nav-links a {
-				font-size: 0.92rem; /* was 2rem — corrected */
+				font-size: 1rem;
 				font-weight: 700;
-				color: var(--yellow);
-				opacity: 0.88;
-				transition: opacity 0.2s;
+				color: var(--text);
+				opacity: 0.7;
+				transition:
+					opacity 0.2s,
+					color 0.2s;
 				white-space: nowrap;
 			}
-
 			.nav-links a:hover {
 				opacity: 1;
+				color: var(--teal);
 			}
-
 			.nav-links a.active {
 				opacity: 1;
-				border-bottom: 2px solid var(--white);
+				color: var(--teal);
+				border-bottom: 2px solid var(--teal);
 				padding-bottom: 2px;
 			}
 
@@ -130,23 +134,22 @@
 				display: flex;
 				align-items: center;
 				gap: 0.4rem;
-				padding: 0.45rem 1rem;
-				border: 2px solid rgba(255, 255, 255, 0.8);
-				border-radius: 2rem;
+				padding: 0.55rem 1.25rem;
+				background: var(--teal);
 				color: var(--white) !important;
-				font-size: 0.82rem;
+				font-size: 0.95rem;
 				font-weight: 700;
+				border-radius: 2rem;
 				opacity: 1 !important;
 				white-space: nowrap;
 				transition: background 0.2s !important;
 			}
-
 			.nav-whatsapp:hover {
-				background: rgba(255, 255, 255, 0.15) !important;
+				background: var(--teal-dark) !important;
 			}
 
 			/* ════════════════════════════════
-			   HAMBURGER (mobile only)
+			   HAMBURGER
 			════════════════════════════════ */
 			.nav-hamburger {
 				display: none;
@@ -154,25 +157,22 @@
 				justify-content: center;
 				gap: 5px;
 				background: none;
-				border: 2px solid rgba(255, 255, 255, 0.6);
+				border: 2px solid var(--border);
 				border-radius: 0.4rem;
 				padding: 0.45rem 0.55rem;
 				cursor: pointer;
 				flex-shrink: 0;
 			}
-
 			.nav-hamburger span {
 				display: block;
 				width: 20px;
 				height: 2px;
-				background: var(--white);
+				background: var(--text);
 				border-radius: 2px;
 				transition:
 					transform 0.3s,
 					opacity 0.3s;
 			}
-
-			/* ☰ → ✕ animation */
 			.nav-hamburger.open span:nth-child(1) {
 				transform: translateY(7px) rotate(45deg);
 			}
@@ -184,245 +184,310 @@
 			}
 
 			/* ════════════════════════════════
-			   MOBILE SLIDE-DOWN PANEL
-			   (slides DOWN from under the nav,
-			    not from the side — consistent
-			    with the top-fixed nav)
+			   MOBILE MENU
 			════════════════════════════════ */
 			.mobile-menu {
 				display: none;
 				position: fixed;
-				top: var(--nav-h); /* starts exactly below the nav bar */
+				top: var(--nav-h);
 				left: 0;
 				right: 0;
 				z-index: 99;
-				background: var(--teal-dark);
+				background: var(--white);
+				border-top: 1px solid var(--border);
 				padding: 0.5rem 1.5rem 1.5rem;
 				flex-direction: column;
-				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-				/* hidden state: panel pushed UP behind the nav */
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 				transform: translateY(-110%);
 				transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-				/* max-height + scroll so it never covers the whole screen */
 				max-height: calc(100svh - var(--nav-h));
 				overflow-y: auto;
 			}
-
 			.mobile-menu.open {
 				transform: translateY(0);
 			}
-
 			.mobile-menu li {
 				list-style: none;
-				border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+				border-bottom: 1px solid var(--border);
 			}
 			.mobile-menu li:last-child {
 				border-bottom: none;
 			}
-
 			.mobile-menu a {
 				display: block;
 				padding: 0.9rem 0.25rem;
 				font-size: 1rem;
 				font-weight: 700;
-				color: var(--white);
+				color: var(--text);
 				transition: color 0.2s;
 			}
 			.mobile-menu a:hover {
-				color: var(--gold-light);
+				color: var(--teal);
 			}
-
 			.mobile-menu .mobile-whatsapp {
 				display: inline-flex;
 				align-items: center;
 				gap: 0.5rem;
-				margin-top: 0.5rem;
+				margin-top: 0.75rem;
 				padding: 0.75rem 1.25rem;
-				background: var(--gold);
+				background: var(--teal);
 				color: var(--white) !important;
 				border-radius: 2rem;
 				font-size: 0.92rem;
+				font-weight: 700;
 				transition: background 0.2s;
 			}
 			.mobile-menu .mobile-whatsapp:hover {
-				background: var(--gold-light);
+				background: var(--teal-dark);
 			}
 
 			/* ════════════════════════════════
 			   HERO
+			   Split layout: left=text, right=photo
+			   Photo bleeds to top/right/bottom edges
 			════════════════════════════════ */
 			#inicio {
 				position: relative;
-				background: var(--teal);
-				min-height: 100svh; /* svh accounts for mobile browser chrome */
-				display: flex;
-				flex-direction: column;
-				overflow: hidden;
-				padding-top: var(
-					--nav-h
-				); /* matches fixed nav height exactly */
-			}
-
-			.hero-watermark {
-				position: absolute;
-				right: 2%;
-				top: 50%;
-				transform: translateY(-50%);
-				width: 38%;
-				opacity: 0.08;
-				pointer-events: none;
-				z-index: 0;
-			}
-			.hero-watermark img {
-				width: 100%;
-				height: auto;
-				display: block;
-			}
-
-			.hero-content {
-				position: relative;
-				z-index: 1;
+				background: var(--cream);
+				min-height: 100svh;
 				display: grid;
 				grid-template-columns: 1fr 1fr;
+				overflow: hidden;
+				padding-top: var(--nav-h);
+			}
+
+			/* LEFT: text column */
+			.hero-text {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				padding: 3rem 2.5rem 3rem 3rem;
+				z-index: 1;
+			}
+
+			.hero-eyebrow {
+				display: inline-flex;
 				align-items: center;
-				flex: 1;
-				padding: 2rem 2.5rem 5rem;
-				gap: 2rem;
+				gap: 0.4rem;
+				background: var(--teal-mid);
+				color: var(--teal-dark);
+				font-size: 0.95rem;
+				font-weight: 700;
+				padding: 0.3rem 0.8rem;
+				border-radius: 2rem;
+				margin-bottom: 1rem;
+				width: fit-content;
 			}
 
 			.hero-text h1 {
-				font-size: clamp(1.8rem, 4vw, 3.2rem);
-				font-weight: 800;
-				color: var(--white);
-				line-height: 1.1;
+				font-size: clamp(2.4rem, 4.5vw, 4rem);
+				font-weight: 900;
+				color: var(--text);
+				line-height: 1.05;
+				margin-bottom: 0.2rem;
+			}
+
+			.hero-text h1 .brand-name {
+				font-style: italic;
+				color: var(--gold);
+				display: block;
+				font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+				line-height: 1.05;
+				margin-bottom: 0.75rem;
+			}
+
+			.hero-text > p {
+				font-size: clamp(1rem, 1.6vw, 1.15rem);
+				color: var(--muted);
+				max-width: 36ch;
+				line-height: 1.6;
 				margin-bottom: 1.25rem;
 			}
 
-			.hero-text h1 em {
-				font-style: italic;
+			/* Mini icons row */
+			.hero-icons {
+				display: flex;
+				gap: 1rem;
+				margin-bottom: 1.5rem;
+				flex-wrap: wrap;
+			}
+			.hero-icon-item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 0.25rem;
+				font-size: 0.62rem;
 				font-weight: 700;
-				color: var(--yellow);
-				display: block;
+				color: var(--muted);
+				text-align: center;
+				min-width: 44px;
+			}
+			.hero-icon-item svg {
+				width: 30%;
+				height: 30%;
+				color: var(--teal);
 			}
 
-			.hero-text p {
-				font-size: clamp(0.9rem, 1.8vw, 1rem);
-				color: rgba(255, 255, 255, 0.85);
-				max-width: 38ch;
-				line-height: 1.7;
-				margin-bottom: 2rem;
-			}
-
+			/* Buttons */
 			.hero-btns {
 				display: flex;
 				align-items: center;
-				gap: 1.25rem;
+				gap: 0.85rem;
 				flex-wrap: wrap;
+				margin-bottom: 1rem;
 			}
 
 			.btn-gold {
 				display: inline-flex;
 				align-items: center;
-				gap: 0.45rem;
-				padding: 0.75rem 1.5rem;
+				gap: 0.4rem;
+				padding: 0.9rem 1.6rem;
 				background: var(--gold);
 				color: var(--white);
-				font-weight: 700;
-				font-size: 0.9rem;
+				font-weight: 800;
+				font-size: 1rem;
 				border-radius: 2rem;
 				transition:
 					background 0.2s,
 					transform 0.2s;
+				box-shadow: 0 4px 14px rgba(200, 147, 58, 0.3);
 			}
 			.btn-gold:hover {
 				background: var(--gold-light);
 				transform: translateY(-2px);
 			}
 
-			.btn-ghost-white {
-				font-weight: 600;
-				font-size: 0.9rem;
-				color: var(--white);
-				opacity: 0.88;
-				transition: opacity 0.2s;
-			}
-			.btn-ghost-white:hover {
-				opacity: 1;
-			}
-
-			/* Hero photo — no more hardcoded translateX */
-			.hero-photo {
+			/* Small tag below WhatsApp button */
+			.btn-gold-wrap {
 				display: flex;
-				justify-content: center;
-				align-items: flex-end;
+				flex-direction: column;
+				gap: 0.2rem;
+			}
+			.btn-gold-tag {
+				font-size: 0.6rem;
+				color: var(--muted);
+				padding-left: 0.25rem;
 			}
 
+			.btn-ghost-teal {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				font-weight: 700;
+				font-size: 1rem;
+				color: var(--text);
+				opacity: 0.7;
+				transition: opacity 0.2s;
+				border: 1.5px solid rgba(0, 0, 0, 0.15);
+				padding: 0.85rem 1.25rem;
+				border-radius: 2rem;
+			}
+			.btn-ghost-teal:hover {
+				opacity: 1;
+				border-color: var(--teal);
+				color: var(--teal);
+			}
+
+			.hero-star-line {
+				display: flex;
+				align-items: center;
+				gap: 0.35rem;
+				font-size: 0.88rem;
+				font-weight: 600;
+				color: var(--muted);
+			}
+			.hero-star-line svg {
+				color: var(--gold);
+				width: 14px;
+				height: 14px;
+			}
+
+			/* RIGHT: photo column — bleeds to all edges */
+			.hero-photo {
+				position: relative;
+				overflow: hidden;
+				/* pull photo flush to nav top, right edge, and bottom */
+				margin-top: calc(-1 * var(--nav-h));
+				padding-top: var(--nav-h);
+			}
 			.hero-photo img {
+				position: absolute;
+				inset: 0;
 				width: 100%;
-				max-width: 460px;
-				/* guard: image never taller than remaining hero space */
-				max-height: calc(100svh - var(--nav-h) - 6rem);
-				object-fit: contain;
-				border-radius: 1rem;
+				height: 100%;
+				object-fit: cover;
+				object-position: right top;
 			}
 
 			/* ════════════════════════════════
-			   TRUST BAR
+			   TRUST SECTION
 			════════════════════════════════ */
-			.trust-bar {
-				position: relative;
-				z-index: 1;
-				display: grid;
-				grid-template-columns: repeat(4, 1fr);
-				gap: 0.75rem;
-				padding: 0.75rem 1.5rem 1.25rem;
-				background: transparent;
+			.trust-section {
+				background: var(--teal);
+				padding: 2.5rem 2.5rem;
 			}
-
-			.trust-item {
+			.trust-section-title {
+				text-align: center;
+				font-size: 1rem;
+				font-weight: 800;
+				color: var(--white);
+				margin-bottom: 1.5rem;
 				display: flex;
 				align-items: center;
-				gap: 0.65rem;
-				padding: 0.85rem 1rem;
-				background: rgba(0, 0, 0, 0.18);
+				justify-content: center;
+				gap: 0.5rem;
+			}
+			.trust-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 1rem;
+			}
+			.trust-card {
+				background: rgba(255, 255, 255, 0.12);
 				border: 1px solid rgba(255, 255, 255, 0.2);
-				border-radius: 12px;
-				backdrop-filter: blur(10px);
+				border-radius: 1rem;
+				padding: 1.25rem 1rem;
+				text-align: center;
+				backdrop-filter: blur(8px);
 				transition: background 0.2s;
 			}
-			.trust-item:hover {
-				background: rgba(0, 0, 0, 0.28);
+			.trust-card:hover {
+				background: rgba(255, 255, 255, 0.2);
 			}
-
-			.trust-icon {
-				font-size: 1.5rem;
-				flex-shrink: 0;
+			.trust-card-icon {
+				font-size: 1.6rem;
+				margin-bottom: 0.5rem;
 			}
-
-			.trust-label {
-				font-size: clamp(0.72rem, 1.2vw, 0.88rem);
-				font-weight: 700;
+			.trust-card-title {
+				font-size: 0.95rem;
+				font-weight: 800;
 				color: var(--white);
-				line-height: 1.35;
+				margin-bottom: 0.3rem;
+				line-height: 1.3;
+			}
+			.trust-card-desc {
+				font-size: 0.82rem;
+				color: rgba(255, 255, 255, 0.8);
+				line-height: 1.5;
 			}
 
 			/* ════════════════════════════════
 			   WAVES
 			════════════════════════════════ */
-			.wave-bottom {
+			.wave-divider {
 				display: block;
 				width: 100%;
 				overflow: hidden;
 				line-height: 0;
 				margin-top: -1px;
 			}
-			.wave-bottom svg {
+			.wave-divider svg {
 				display: block;
 				width: 100%;
 			}
 
 			/* ════════════════════════════════
-			   SECTION SHARED
+			   SECTIONS SHARED
 			════════════════════════════════ */
 			section {
 				padding: 5rem 2.5rem;
@@ -430,18 +495,21 @@
 
 			.section-eyebrow {
 				text-align: center;
-				font-size: 0.72rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.4rem;
+				font-size: 0.82rem;
 				font-weight: 700;
-				letter-spacing: 0.18em;
+				letter-spacing: 0.16em;
 				text-transform: uppercase;
 				color: var(--teal);
 				margin-bottom: 0.5rem;
 			}
-
 			.section-title {
 				text-align: center;
-				font-size: clamp(1.4rem, 3vw, 2.2rem);
-				font-weight: 800;
+				font-size: clamp(1.7rem, 3.5vw, 2.6rem);
+				font-weight: 900;
 				color: var(--text);
 				margin-bottom: 2.5rem;
 			}
@@ -459,7 +527,6 @@
 				gap: 1.25rem;
 				margin-bottom: 2rem;
 			}
-
 			.service-card {
 				border: 1px solid var(--border);
 				border-radius: 1rem;
@@ -473,29 +540,27 @@
 				box-shadow: 0 8px 28px rgba(27, 128, 128, 0.12);
 				transform: translateY(-4px);
 			}
-
 			.service-top {
 				padding: 1.5rem 1.25rem 1rem;
 				text-align: center;
 			}
 			.service-svg {
-				width: 48px;
-				height: 48px;
-				margin: 0 auto 0.85rem;
+				width: 44px;
+				height: 44px;
+				margin: 0 auto 0.75rem;
 				color: var(--teal);
 			}
 			.service-name {
-				font-size: 1rem;
+				font-size: 1.05rem;
 				font-weight: 800;
 				color: var(--text);
-				margin-bottom: 0.4rem;
+				margin-bottom: 0.35rem;
 			}
 			.service-desc {
-				font-size: 0.8rem;
+				font-size: 0.88rem;
 				color: var(--muted);
 				line-height: 1.55;
 			}
-
 			.service-photo {
 				width: 100%;
 				aspect-ratio: 4/3;
@@ -506,21 +571,15 @@
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				color: var(--teal);
-				font-size: 0.75rem;
-				gap: 0.3rem;
 			}
-
 			.service-photo img {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
 			}
-
 			.services-cta {
 				text-align: center;
 			}
-
 			.btn-teal {
 				display: inline-block;
 				padding: 0.75rem 2rem;
@@ -544,14 +603,12 @@
 			#galeria {
 				background: var(--off-white);
 			}
-
 			.gallery-grid {
 				display: grid;
 				grid-template-columns: repeat(6, 1fr);
 				gap: 0.6rem;
 				margin-bottom: 1.75rem;
 			}
-
 			.gallery-item {
 				aspect-ratio: 1;
 				min-height: 70px;
@@ -564,17 +621,14 @@
 			.gallery-item:hover {
 				transform: scale(1.04);
 			}
-
 			.gallery-item img {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
 			}
-
 			.gallery-cta {
 				text-align: center;
 			}
-
 			.btn-outline-teal {
 				display: inline-block;
 				padding: 0.65rem 1.75rem;
@@ -600,14 +654,12 @@
 				color: var(--white);
 				padding: 3.5rem 2.5rem;
 			}
-
 			.footer-grid {
 				display: grid;
 				grid-template-columns: repeat(4, 1fr);
 				gap: 2rem;
 				align-items: start;
 			}
-
 			.footer-col-title {
 				display: flex;
 				align-items: center;
@@ -616,15 +668,13 @@
 				font-weight: 800;
 				margin-bottom: 0.65rem;
 			}
-
 			.footer-col p,
 			.footer-col address {
-				font-size: 0.85rem;
+				font-size: 0.95rem;
 				line-height: 1.7;
 				opacity: 0.85;
 				font-style: normal;
 			}
-
 			.footer-whatsapp {
 				display: inline-flex;
 				align-items: center;
@@ -641,7 +691,6 @@
 			.footer-whatsapp:hover {
 				background: var(--gold-light);
 			}
-
 			.map-placeholder {
 				width: 100%;
 				aspect-ratio: 4/3;
@@ -658,7 +707,6 @@
 				gap: 0.35rem;
 				text-align: center;
 			}
-
 			.footer-bottom {
 				background: var(--teal-dark);
 				border-top: 1px solid rgba(255, 255, 255, 0.12);
@@ -667,12 +715,10 @@
 				align-items: center;
 				justify-content: space-between;
 			}
-
 			.footer-bottom p {
-				font-size: 0.78rem;
+				font-size: 0.88rem;
 				color: rgba(255, 255, 255, 0.6);
 			}
-
 			.social-links {
 				display: flex;
 				gap: 1.1rem;
@@ -686,27 +732,23 @@
 			}
 
 			/* ════════════════════════════════
-			   RESPONSIVE BREAKPOINTS
+			   RESPONSIVE
 			════════════════════════════════ */
-
-			/* Tablet landscape ≤ 1060px: tighten nav, keep desktop layout */
 			@media (max-width: 1060px) {
 				nav {
-					padding: 0 1.5rem;
+					padding: 0 1.25rem;
 				}
 				.nav-links {
 					gap: 1rem;
 				}
 				.nav-links a {
-					font-size: 0.82rem;
-				}
-				.nav-whatsapp {
-					padding: 0.4rem 0.8rem;
 					font-size: 0.78rem;
+				}
+				.hero-text {
+					padding: 2rem 1.5rem 2rem 2rem;
 				}
 			}
 
-			/* Tablet portrait ≤ 900px: 2-col grids, 2×2 trust bar */
 			@media (max-width: 900px) {
 				.services-grid {
 					grid-template-columns: repeat(2, 1fr);
@@ -717,16 +759,15 @@
 				.footer-grid {
 					grid-template-columns: 1fr 1fr;
 				}
-				.trust-bar {
+				.trust-grid {
 					grid-template-columns: repeat(2, 1fr);
 				}
 			}
 
-			/* Mobile ≤ 768px: hamburger menu, single-column hero */
+			/* ── Mobile ≤ 768px ── */
 			@media (max-width: 768px) {
-				/* Smaller nav height on mobile saves vertical space */
 				:root {
-					--nav-h: 58px;
+					--nav-h: 60px;
 				}
 
 				nav {
@@ -734,51 +775,74 @@
 				}
 				.nav-links {
 					display: none;
-				} /* hide desktop links */
+				}
 				.nav-hamburger {
 					display: flex;
-				} /* show hamburger */
+				}
 				.mobile-menu {
 					display: flex;
-				} /* enable panel */
-
-				section {
-					padding: 3rem 1.1rem;
 				}
 
-				/* for smallers screens */
-				#inicio {
+				/* Stack hero vertically: photo on top, text below */
+				/* #inicio {
+					grid-template-columns: 1fr;
+					grid-template-rows: 52vw auto;
 					min-height: auto;
-					padding-bottom: 1rem;
+				} */
+				.hero-photo {
+					display: none;
+				}
+				/* Photo row — fixed height, full width */
+				.hero-photo {
+					grid-row: 1;
+					margin-top: 0;
+					padding-top: 0;
+					height: 52vw;
+					min-height: 200px;
+					max-height: 320px;
+				}
+
+				/* Text row — below photo */
+				.hero-text {
+					grid-row: 2;
+					padding: 2rem 1.25rem 2.5rem;
 				}
 
 				.hero-text h1 {
-					font-size: clamp(1.5rem, 6vm, 2rem);
-					margin-bottom: 0.85rem;
+					font-size: clamp(1.9rem, 7vw, 2.4rem);
+				}
+				.hero-text h1 .brand-name {
+					font-size: clamp(2.2rem, 8vw, 2.8rem);
+				}
+				.hero-text > p {
+					font-size: 1rem;
+					margin-bottom: 1rem;
 				}
 
-				.hero-text p {
-					font-size: 0.9rem;
-					margin-bottom: 1.25rem;
+				.hero-icons {
+					gap: 0.85rem;
+					margin-bottom: 1.1rem;
 				}
-				/* end */
-
-				.hero-content {
-					grid-template-columns: 1fr;
-					padding: 1.5rem 1.1rem 1.5rem;
-					gap: 1rem;
+				.hero-icon-item {
+					font-size: 0.72rem;
+					min-width: 38px;
 				}
-
-				/* Show photo on mobile but smaller */
-				.hero-photo {
-					justify-content: center;
-				}
-				.hero-photo img {
-					max-width: 260px;
-					max-height: 240px;
-					border-radius: 0.75rem;
+				.hero-icon-item svg {
+					width: 20px;
+					height: 20px;
 				}
 
+				.trust-section {
+					padding: 1.75rem 1.25rem;
+				}
+				.trust-grid {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.75rem;
+				}
+
+				section {
+					padding: 3rem 1.25rem;
+				}
 				.services-grid {
 					grid-template-columns: 1fr 1fr;
 				}
@@ -788,43 +852,26 @@
 				.footer-grid {
 					grid-template-columns: 1fr;
 				}
-
 				#contacto {
-					padding: 2.5rem 1.1rem;
+					padding: 2.5rem 1.25rem;
 				}
-
 				.footer-bottom {
 					flex-direction: column;
 					gap: 0.65rem;
 					text-align: center;
-					padding: 1rem 1.1rem;
+					padding: 1rem 1.25rem;
 				}
 			}
 
-			/* Small phones ≤ 480px: single column for services and trust bar */
 			@media (max-width: 480px) {
-				.trust-bar {
-					grid-template-columns: 1fr;
+				.trust-grid {
+					grid-template-columns: 1fr 1fr;
 				}
-
-				/* Hide photo on very small screens to give text room */
-				.hero-photo {
-					display: none;
-				}
-
 				.services-grid {
 					grid-template-columns: 1fr;
 				}
-				.gallery-grid {
-					grid-template-columns: repeat(2, 1fr);
-				}
-
-				.hero-btns {
-					gap: 0.75rem;
-				}
-				.btn-gold,
-				.btn-ghost-white {
-					font-size: 0.82rem;
+				.hero-icons {
+					gap: 0.5rem;
 				}
 			}
 
@@ -843,10 +890,8 @@
 		<!-- ══ NAV ══════════════════════════════════ -->
 		<nav>
 			<a href="#inicio" class="nav-logo">
-				<img
-					src="/images/hero/lili-lettering-yellow.png"
-					alt="LiLi Peluquería Canina"
-				/>
+				<img src="/images/hero/logo-lili.png" alt="LiLi" />
+				<span class="nav-logo-sub">Peluquería Canina</span>
 			</a>
 
 			<ul class="nav-links">
@@ -888,7 +933,7 @@
 			</button>
 		</nav>
 
-		<!-- Mobile menu panel (slides DOWN from below nav) -->
+		<!-- Mobile menu -->
 		<ul class="mobile-menu" id="mobile-menu">
 			<li><a href="#inicio">Inicio</a></li>
 			<li><a href="#servicios">Servicios</a></li>
@@ -920,20 +965,102 @@
 
 		<!-- ══ HERO ══════════════════════════════════ -->
 		<section id="inicio">
-			<div class="hero-watermark" aria-hidden="true">
-				<img src="/images/hero/logo-lili.png" alt="" />
-			</div>
+			<!-- LEFT: all text -->
+			<div class="hero-text">
+				<h1>
+					Peluquería<br />Canina
+					<span class="brand-name">LiLi</span>
+				</h1>
 
-			<div class="hero-content">
-				<div class="hero-text">
-					<!-- <h1>Cuidado profesional,<em>amor incondicional</em></h1> -->
-					<h1>Peluquería Canina <em>LiLi</em></h1>
-					<p>
-						En LiLi Peluquería Canina, consentimos a tu mejor amigo
-						con servicios de estética y bienestar pensados en su
-						comodidad.
-					</p>
-					<div class="hero-btns">
+				<p>
+					Baño, corte y cuidado profesional para que tu perro se vea y
+					se sienta genial.
+				</p>
+
+				<!-- <div class="hero-icons">
+					<div class="hero-icon-item">
+						<svg
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.8"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							><path
+								d="M7 17H5a2 2 0 01-2-2V9a2 2 0 012-2h2m10 10h2a2 2 0 002-2V9a2 2 0 00-2-2h-2"
+							></path><rect
+								x="7"
+								y="5"
+								width="10"
+								height="14"
+								rx="2"></rect><circle cx="12" cy="11" r="2"
+							></circle></svg
+						>
+						Baño y<br />secado
+					</div> -->
+				<!-- <div class="hero-icon-item">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						><circle cx="6" cy="6" r="2"></circle><circle
+							cx="18"
+							cy="6"
+							r="2"></circle><path d="M6 8v8l6 4 6-4V8"
+						></path><path d="M6 8l6 4 6-4"></path></svg
+					>
+					Corte y<br />arreglo
+				</div>
+				<div class="hero-icon-item">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						><path
+							d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M18 9h4M2 15h4M18 15h4"
+						></path><rect x="6" y="6" width="12" height="12" rx="3"
+						></rect><circle cx="12" cy="12" r="3"></circle></svg
+					>
+					Cepillado y<br />desenredado
+				</div> -->
+				<!-- <div class="hero-icon-item">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						><path d="M14.5 17.5L3 6V3h3l11.5 11.5"></path><path
+							d="M13 19l6-6"></path><path d="M2 22l7-7"
+						></path></svg
+					>
+					Uñas e<br />higiene
+				</div>
+				<div class="hero-icon-item">
+					<svg
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						><path
+							d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
+						></path></svg
+					>
+					Trato<br />paciente
+				</div>
+			</div> -->
+
+				<div class="hero-btns">
+					<div class="btn-gold-wrap">
 						<a
 							href="https://wa.me/TUNUMERO"
 							class="btn-gold"
@@ -951,63 +1078,112 @@
 									d="M11.999 2C6.477 2 2 6.477 2 11.999c0 1.945.535 3.763 1.466 5.319L2 22l4.78-1.452A9.956 9.956 0 0011.999 22C17.522 22 22 17.522 22 11.999 22 6.477 17.522 2 11.999 2zm0 18.18a8.165 8.165 0 01-4.158-1.134l-.299-.177-3.081.936.939-3.03-.195-.31a8.179 8.179 0 01-1.187-4.265c0-4.517 3.677-8.194 8.181-8.194 4.506 0 8.183 3.677 8.183 8.194 0 4.504-3.677 8.18-8.183 8.18z"
 								></path></svg
 							>
-							Contactar por WhatsApp
+							Reservar por WhatsApp
 						</a>
-						<a href="#servicios" class="btn-ghost-white"
-							>Conoce nuestros servicios →</a
+						<span class="btn-gold-tag"
+							>Rápido, fácil y sin llamadas</span
 						>
 					</div>
+					<a href="#servicios" class="btn-ghost-teal">
+						Ver servicios
+						<svg
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+							><path d="M5 12h14M12 5l7 7-7 7"></path></svg
+						>
+					</a>
 				</div>
 
-				<div class="hero-photo">
-					<img
-						src="/images/hero/real-dog-hero.png"
-						alt="Perrito acicalado"
-						loading="eager"
-					/>
+				<div class="hero-star-line">
+					<svg viewBox="0 0 24 24" fill="currentColor"
+						><path
+							d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+						></path></svg
+					>
+					Perros de todas las razas y tamaños
 				</div>
 			</div>
 
-			<div class="trust-bar">
-				<div class="trust-item">
-					<span class="trust-icon">🤍</span>
-					<span class="trust-label"
-						>Trato cariñoso<br />y paciente</span
-					>
-				</div>
-				<div class="trust-item">
-					<span class="trust-icon">🛡️</span>
-					<span class="trust-label">Productos<br />de calidad</span>
-				</div>
-				<div class="trust-item">
-					<span class="trust-icon">📅</span>
-					<span class="trust-label">Citas<br />programadas</span>
-				</div>
-				<div class="trust-item">
-					<span class="trust-icon">🐾</span>
-					<span class="trust-label"
-						>Para perros<br />de todas las razas</span
-					>
-				</div>
+			<!-- RIGHT: hero photo fills column edge to edge -->
+			<div class="hero-photo">
+				<!--
+					Use the original non-transparent photo here (hero-dog.png).
+					It fills the column with object-fit:cover so the dog is prominent.
+					The transparent version (hero-dog1.png) works too but
+					the original with the grooming salon background looks better here.
+				-->
+				<img
+					src="/images/hero/hero-dog.png"
+					alt="Perrito acicalado en LiLi Peluquería Canina"
+					loading="eager"
+				/>
 			</div>
 		</section>
 
-		<!-- Wave hero → services -->
-		<div class="wave-bottom" style="background: var(--teal); margin-top:0;">
+		<!-- ══ TRUST SECTION ════════════════════════ -->
+		<div class="trust-section">
+			<p class="trust-section-title">
+				🤍 Todo lo que tu mascota necesita
+			</p>
+			<div class="trust-grid">
+				<div class="trust-card">
+					<div class="trust-card-icon">🤍</div>
+					<p class="trust-card-title">
+						Trato cariñoso<br />y paciente
+					</p>
+					<p class="trust-card-desc">
+						Cada perro recibe el tiempo, cuidado y respeto que
+						merece.
+					</p>
+				</div>
+				<div class="trust-card">
+					<div class="trust-card-icon">🛡️</div>
+					<p class="trust-card-title">Productos<br />de calidad</p>
+					<p class="trust-card-desc">
+						Utilizamos productos seguros y de alta calidad para su
+						bienestar.
+					</p>
+				</div>
+				<div class="trust-card">
+					<div class="trust-card-icon">📅</div>
+					<p class="trust-card-title">Citas<br />programadas</p>
+					<p class="trust-card-desc">
+						Agenda fácilmente por WhatsApp en el horario que te
+						convenga.
+					</p>
+				</div>
+				<div class="trust-card">
+					<div class="trust-card-icon">🐾</div>
+					<p class="trust-card-title">
+						Para perros<br />de todas las razas
+					</p>
+					<p class="trust-card-desc">
+						Pequeños, medianos o grandes, todos son bienvenidos.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Wave trust → services -->
+		<div class="wave-divider" style="background: var(--teal);">
 			<svg
-				viewBox="0 0 1440 60"
+				viewBox="0 0 1440 55"
 				preserveAspectRatio="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<path
-					d="M0,0 C360,60 1080,60 1440,0 L1440,60 L0,60 Z"
+					d="M0,0 C360,55 1080,55 1440,0 L1440,55 L0,55 Z"
 					fill="white"></path>
 			</svg>
 		</div>
 
 		<!-- ══ SERVICES ══════════════════════════════ -->
 		<section id="servicios">
-			<p class="section-eyebrow">Nuestros servicios</p>
+			<p class="section-eyebrow">🐾 Nuestros servicios</p>
 			<h2 class="section-title">Todo lo que tu mascota necesita</h2>
 
 			<div class="services-grid">
@@ -1164,7 +1340,7 @@
 
 		<!-- ══ GALLERY ════════════════════════════════ -->
 		<section id="galeria" style="padding-top: 3.5rem;">
-			<p class="section-eyebrow">Galería</p>
+			<p class="section-eyebrow">📸 Galería</p>
 			<h2 class="section-title">Momentos que nos llenan de alegría</h2>
 
 			<div class="gallery-grid">
@@ -1217,10 +1393,8 @@
 					href="https://www.instagram.com/lili.peluqueriacanina"
 					class="btn-outline-teal"
 					target="_blank"
-					rel="noopener"
+					rel="noopener">Ver más fotos</a
 				>
-					Ver más fotos
-				</a>
 			</div>
 		</section>
 
@@ -1244,9 +1418,9 @@
 				<div class="footer-col">
 					<p class="footer-col-title"><span>📍</span> Estamos aquí</p>
 					<address>
-						Calle Alamillos Sin Salida<br />
-						Palma del Rio<br />
-						Cordoba
+						Calle 123 #45-67<br />
+						Tu Ciudad<br />
+						Colombia
 					</address>
 				</div>
 
@@ -1286,12 +1460,6 @@
 				</div>
 
 				<div class="footer-col">
-					<!--
-						Replace with:
-						<iframe src="https://www.google.com/maps/embed?pb=..."
-							width="100%" height="180" style="border:0;border-radius:0.75rem;"
-							allowfullscreen loading="lazy"></iframe>
-					-->
 					<div class="map-placeholder">
 						<span>🗺️</span>
 						<span>LiLi Peluquería Canina</span>
@@ -1358,17 +1526,14 @@
 				document.body.style.overflow = isOpen ? "hidden" : "";
 			});
 
-			// Close when any menu link is tapped
 			mobileMenu.querySelectorAll("a").forEach((link) => {
 				link.addEventListener("click", closeMobileMenu);
 			});
 
-			// Close on Escape
 			document.addEventListener("keydown", (e) => {
 				if (e.key === "Escape") closeMobileMenu();
 			});
 
-			// Active nav link on scroll
 			const sections = document.querySelectorAll(
 				"section[id], footer[id]",
 			);
@@ -1390,7 +1555,7 @@
 						}
 					});
 				},
-				{ threshold: 0.35 },
+				{ threshold: 0.3 },
 			);
 
 			sections.forEach((s) => observer.observe(s));
