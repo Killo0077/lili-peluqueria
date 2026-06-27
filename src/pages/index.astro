@@ -389,46 +389,47 @@
 
 			/*Google review */
 			.hero-rating {
-				position: absolute;
-				right: 3rem;
-				bottom: 2rem;
+	display: flex;
+	align-items: center;
+	gap: 0.9rem;
+	width: fit-content;
 
-				display: flex;
-				align-items: center;
-				gap: 0.9rem;
+	background: #fff;
+	padding: 0.85rem 1.1rem;
+	border-radius: 18px;
+	box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
 
-				background: #fff;
-				padding: 0.9rem 1.2rem;
+	margin-top: 1rem;
+}
 
-				border-radius: 18px;
+.hero-stars {
+	color: var(--gold);
+	font-size: 1.05rem;
+	letter-spacing: 0.12rem;
+	line-height: 1;
+}
 
-				box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+.hero-rating-text {
+	display: flex;
+	flex-direction: column;
+}
 
-				z-index: 5;
-			}
+.hero-rating-text strong {
+	color: var(--text);
+	font-size: 0.95rem;
+}
 
-			.hero-stars {
-				color: var(--gold);
-				font-size: 1.1rem;
-				letter-spacing: 0.15rem;
-				line-height: 1;
-			}
+.hero-rating-text span {
+	color: #7b8794;
+	font-size: 0.8rem;
+}
 
-			.hero-rating-text {
-				display: flex;
-				flex-direction: column;
-			}
-
-			.hero-rating-text strong {
-				color: var(--text);
-				font-size: 0.95rem;
-			}
-
-			.hero-rating-text span {
-				color: #7b8794;
-				font-size: 0.8rem;
-			}
-
+@media (max-width: 768px) {
+	.hero-rating {
+		margin-top: 1rem;
+		padding: 0.75rem 1rem;
+	}
+}
 			@media (max-width: 768px) {
 				#inicio {
 					min-height: calc(100svh - var(--nav-h));
@@ -963,9 +964,13 @@
 					gap: 1.5rem;
 				}
 
-				.hero-text {
-					padding-right: 0;
-				}
+				<div class="hero-rating">
+	<div class="hero-stars">★★★★★</div>
+	<div class="hero-rating-text">
+		<strong>5,0 en Google</strong>
+		<span>Reseñas verificadas</span>
+	</div>
+</div>
 
 				.hero-text h1 {
 					font-size: clamp(1.7rem, 7vw, 2.2rem);
