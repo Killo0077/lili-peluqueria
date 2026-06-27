@@ -387,6 +387,48 @@
 				display: none;
 			}
 
+			/*Google review */
+			.hero-rating {
+				position: absolute;
+				right: 3rem;
+				bottom: 2rem;
+
+				display: flex;
+				align-items: center;
+				gap: 0.9rem;
+
+				background: #fff;
+				padding: 0.9rem 1.2rem;
+
+				border-radius: 18px;
+
+				box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+
+				z-index: 5;
+			}
+
+			.hero-stars {
+				color: var(--gold);
+				font-size: 1.1rem;
+				letter-spacing: 0.15rem;
+				line-height: 1;
+			}
+
+			.hero-rating-text {
+				display: flex;
+				flex-direction: column;
+			}
+
+			.hero-rating-text strong {
+				color: var(--text);
+				font-size: 0.95rem;
+			}
+
+			.hero-rating-text span {
+				color: #7b8794;
+				font-size: 0.8rem;
+			}
+
 			@media (max-width: 768px) {
 				#inicio {
 					min-height: calc(100svh - var(--nav-h));
@@ -1448,6 +1490,16 @@
 			La satisfacción de nuestros peludos es nuestra mejor carta de
 			presentación
 		</p>
+
+		<!--Google review -->
+
+		<div class="hero-rating">
+			<div class="hero-stars">★★★★★</div>
+			<div class="hero-rating-text">
+				<strong>5,0 en Google</strong>
+				<span>Reseñas verificadas</span>
+			</div>
+		</div>
 
 		<div class="reviews-grid">
 			<div class="review-card">
